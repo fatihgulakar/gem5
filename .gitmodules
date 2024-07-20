@@ -1,0 +1,6 @@
+[submodule "Konata"]
+	path = Konata
+	url = https://github.com/shioyadan/Konata.git
+[submodule "tests/test-progs/riscv-coremark"]
+	path = tests/test-progs/riscv-coremark
+	url = https://github.com/riscv-boom/riscv-coremark

@@ -55,10 +55,11 @@ from common import SimpleOpts
 # Default to running 'hello', use the compiled ISA to find the binary
 # grab the specific path to the binary
 thispath = os.path.dirname(os.path.realpath(__file__))
+print(thispath)
 default_binary = os.path.join(
     thispath,
     "../../../",
-    "tests/test-progs/hello/bin/x86/linux/hello",
+    "tests/test-progs/sieve/bin/sieve.elf",
 )
 
 # Binary to execute
@@ -80,7 +81,7 @@ system.mem_mode = "timing"  # Use timing accesses
 system.mem_ranges = [AddrRange("512MB")]  # Create an address range
 
 # Create a simple CPU
-system.cpu = X86TimingSimpleCPU()
+system.cpu = O3CPU()
 
 # Create an L1 instruction and data cache
 system.cpu.icache = L1ICache(args)
@@ -109,9 +110,9 @@ system.l2cache.connectMemSideBus(system.membus)
 
 # create the interrupt controller for the CPU
 system.cpu.createInterruptController()
-system.cpu.interrupts[0].pio = system.membus.mem_side_ports
-system.cpu.interrupts[0].int_requestor = system.membus.cpu_side_ports
-system.cpu.interrupts[0].int_responder = system.membus.mem_side_ports
+# system.cpu.interrupts[0].pio = system.membus.mem_side_ports
+# system.cpu.interrupts[0].int_requestor = system.membus.cpu_side_ports
+# system.cpu.interrupts[0].int_responder = system.membus.mem_side_ports
 
 # Connect the system up to the membus
 system.system_port = system.membus.cpu_side_ports
